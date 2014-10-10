@@ -30,7 +30,7 @@ import GridNx from 'ember-grid-nx/mixins/grid-nx';
 export default Ember.ArrayController.extend(GridNx, {
   grid: Ember.A([
     {title:'#', attr:'id', query:false},
-    {title:'Nome', attr:'nome},
+    {title:'Nome', attr:'nome'},
     {title:'Idade', attr:'idade'}
   ])
 });
