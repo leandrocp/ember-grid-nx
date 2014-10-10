@@ -1,0 +1,29 @@
+<div class="grid-nx">
+  <p>{{input type="text" value=query}}</p>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          {{#each item in header}}
+          <th {{action 'sortBy' item.attr}}>{{item.title}}</th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each row in body}}
+          <tr>
+            {{#each value in row}}
+              <td>{{value}}</td>
+            {{/each}}
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr>
+
+<hr>
+
+<button {{action 'teste'}}>Teste</button>
