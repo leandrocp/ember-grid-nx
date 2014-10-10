@@ -1,6 +1,6 @@
 # ember-grid-nx
 
-An simple yet effective grid. With builtin support for Bootstrap 3.
+A simple yet effective grid. With builtin support for Bootstrap 3.
 
 ## Installation
 
@@ -44,6 +44,11 @@ export default Ember.ArrayController.extend(GridNx, {
 
 Note that gridContent is already defined by grid-nx so you don´t need to worry about it.
 
+## Bootstrap
+
+grid-nx will not add bootstrap into your project, but that´s an easy task. See:
+
+https://github.com/unionups/ember-cli-bootstrap-sass
 
 ## Running Tests
 
