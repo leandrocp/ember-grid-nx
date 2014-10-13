@@ -2,34 +2,32 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   layoutName: 'components/grid-nx',
-  attributeBindings: ['content', 'grid', 'options'],
 
-  header: function() {
-    return this.get('grid');
-  }.property(),
+  paramsDefined: Ember.computed.and('grid', 'content'),
+  header: Ember.computed.defaultTo('grid'),
+  attrs: Ember.computed.mapBy('grid', 'attr'),
+
+  searchableContent: Ember.computed.filter('grid', function(attr){
+    if (Ember.isBlank(attr.query)) { return true; }
+    return Ember.typeOf(attr.query) === "boolean" ? attr.query : false;
+  }),
+  searchableAttrs: Ember.computed.mapBy('searchableContent', 'attr'),
 
   body: function() {
-    var content = this.get('content'),
-        grid    = this.get('grid'),
-        query   = this.get('query');
-
-    var filteredContent = this._filter(grid, content, query);
-    var rows = this._makeRows(grid, filteredContent);
-    return rows;
+    return this.get('paramsDefined') ? this._makeRows() : [];
   }.property('content.lenght', 'arrangedContent.[]', 'query'),
 
-  _filter: function(grid, content, query) {
-    var regex = new RegExp(query, 'gi');
+  _filter: function() {
+    var grid    = this.get('grid');
+    var content = this.get('content');
+    var query   = this.get('query');
+    var attrs   = this.get('searchableAttrs');
+    var regex   = new RegExp(query, 'gi');
 
-    var searchableAttrs = grid.filter(function(item){
-      if (Ember.isBlank(item.query)) { return true; }
-      return Ember.typeOf(item.query) === "boolean" ? item.query : false;
-    }).mapBy('attr');
-
-    var filteredContent = content.filter(function(item){
+    return content.filter(function(item){
       if (Ember.isBlank(query)) { return true; }
 
-      var props = item.getProperties(searchableAttrs);
+      var props = item.getProperties(attrs);
       for (var prop in props) {
         if (props[prop] && props[prop].toString().match(regex)) {
           return true;
@@ -37,15 +35,15 @@ export default Ember.Component.extend({
       }
       return false;
     });
-
-    return filteredContent;
   },
 
-  _makeRows: function(grid, content) {
-    var attrs = Ember.A(grid.mapBy('attr'));
-    var rows  = Ember.A();
+  _makeRows: function() {
+    var filteredContent = this._filter();
+    var grid            = this.get('grid');
+    var attrs           = this.get('attrs');
+    var rows            = Ember.A();
 
-    content.forEach(function(item){
+    filteredContent.forEach(function(item){
       var row = Ember.A();
       attrs.forEach(function(attr){
         row.addObject(item.get(attr));
@@ -64,6 +62,16 @@ export default Ember.Component.extend({
 
   setupGridnx: function() {
     Ember.debug('[grid-nx] setup');
+
+    var content = this.get('content'),
+    grid    = this.get('grid');
+
+    if (Ember.isEmpty(content)) {
+      Ember.Logger.error('[grid-nx] Content is empty! You should declare something like "content=arrangedContent".');
+    }
+    if (Ember.isEmpty(grid)) {
+      Ember.Logger.error('[grid-nx] Grid param is empty! See the docs.');
+    }
   }.on('didInsertElement'),
 
   teardownGridnx: function() {
