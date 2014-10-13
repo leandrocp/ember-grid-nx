@@ -12,6 +12,7 @@
     "test": "ember test"
   },
   "repository": "https://github.com/leandrocp/ember-grid-nx",
+  "homepage": "https://github.com/leandrocp/ember-grid-nx",
   "engines": {
     "node": ">= 0.10.0"
   },
