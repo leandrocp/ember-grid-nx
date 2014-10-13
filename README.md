@@ -30,8 +30,8 @@ import GridNx from 'ember-grid-nx/mixins/grid-nx';
 export default Ember.ArrayController.extend(GridNx, {
   grid: Ember.A([
     {title:'#', attr:'id', query:false},
-    {title:'Nome', attr:'nome'},
-    {title:'Idade', attr:'idade'}
+    {title:'Name', attr:'name'},
+    {title:'Age', attr:'age'}
   ])
 });
 ```
@@ -39,10 +39,8 @@ export default Ember.ArrayController.extend(GridNx, {
 3) Finally put grid-nx helper in template:
 
 ```
-{{grid-nx content=gridContent grid=grid}}
+{{grid-nx content=arrangedContent grid=grid}}
 ```
-
-Note that gridContent is already defined by grid-nx so you don´t need to worry about it.
 
 ## Bootstrap
 
