@@ -9,11 +9,9 @@ export default Ember.Component.extend({
   }.property(),
 
   body: function() {
-    Ember.debug('[grid-nx] body');
-
-    var content = this.get('content');
-    var grid    = this.get('grid');
-    var query   = this.get('query');
+    var content = this.get('content'),
+        grid    = this.get('grid'),
+        query   = this.get('query');
 
     var filteredContent = this._filter(grid, content, query);
     var rows = this._makeRows(grid, filteredContent);
