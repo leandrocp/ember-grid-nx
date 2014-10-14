@@ -27,6 +27,7 @@ export default Ember.Component.extend({
     return content.filter(function(item){
       if (Ember.isBlank(query)) { return true; }
 
+      // https://github.com/Myslik/ember-grid/blob/af5b95b8402c130f72c88b3020f5ff53b42527dc/src/ember-grid.js#L16-L22
       var props = item.getProperties(attrs);
       for (var prop in props) {
         if (props[prop] && props[prop].toString().match(regex)) {
