@@ -10,8 +10,6 @@ A simple yet effective grid. With builtin support for Bootstrap 3.
 
 You just have to follow 3 steps:
 
-### Controller
-
 1) Import and use GridNx mixin:
 
 ```javascript
@@ -57,3 +55,9 @@ https://github.com/unionups/ember-cli-bootstrap-sass
 * `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+## See Also
+
+https://github.com/Myslik/ember-grid
+
+https://github.com/gevious/ember-filtertable
