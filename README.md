@@ -2,6 +2,16 @@
 
 A simple yet effective grid. With builtin support for Bootstrap 3.
 
+## Roadmap
+
+This addon is under heavy development. The following features are planned to be done:
+
+- Pagination
+- Query on any column
+- Support to customize template
+
+Pull requests are welcome.
+
 ## Installation
 
 * `npm install ember-grid-nx --save`
