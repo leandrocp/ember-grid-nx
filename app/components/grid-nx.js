@@ -22,7 +22,7 @@ export default Ember.Component.extend({
     var content = this.get('content');
     var query   = this.get('query');
     var attrs   = this.get('searchableAttrs');
-    var regex   = new RegExp(query, 'gi');
+    var regex   = new RegExp('^'+query+'.*', 'gi');
 
     return content.filter(function(item){
       if (Ember.isBlank(query)) { return true; }

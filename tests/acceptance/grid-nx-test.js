@@ -29,7 +29,7 @@ test('should reorder on header click', function() {
   click('.grid-nx table thead th:first');
 
   andThen(function() {
-    equal(findWithAssert('.grid-nx table tbody td:first').text(), '5');
+    equal(findWithAssert('.grid-nx table tbody td:first').text(), '6');
   });
 });
 
@@ -40,7 +40,7 @@ test('should have the same quantity on reorder', function() {
   click('.grid-nx table thead th:first');
 
   andThen(function() {
-    equal(findWithAssert('.grid-nx table tbody tr').length, 5);
+    equal(findWithAssert('.grid-nx table tbody tr').length, 6);
   });
 });
 
@@ -52,6 +52,28 @@ test('should find valid results', function() {
 
   andThen(function() {
     equal(findWithAssert('.grid-nx table tbody tr').length, 2);
+  });
+});
+
+test('should find results starting with 1 query char', function() {
+  expect(1);
+
+  visit('/artists');
+  fillIn('.grid-nx input', 'a');
+
+  andThen(function() {
+    equal(findWithAssert('.grid-nx table tbody tr').length, 2);
+  });
+});
+
+test('should be case insensitive', function() {
+  expect(1);
+
+  visit('/artists');
+  fillIn('.grid-nx input', 'mAd sEASon');
+
+  andThen(function() {
+    equal(findWithAssert('.grid-nx table tbody tr').length, 1);
   });
 });
 
@@ -70,9 +92,9 @@ test('should search on all valid query attributes', function() {
     equal(findWithAssert('.grid-nx table tbody tr').length, 1);
   });
 
-  fillIn('.grid-nx input', '19');
+  fillIn('.grid-nx input', '198');
   andThen(function() {
-    equal(findWithAssert('.grid-nx table tbody tr').length, 5);
+    equal(findWithAssert('.grid-nx table tbody tr').length, 2);
   });
 });
 

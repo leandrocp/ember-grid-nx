@@ -11,7 +11,8 @@ Artist.reopenClass({
     {id:2, name:'Black Label Society', year:1998},
     {id:3, name:'Black Sabbath', year:1968},
     {id:4, name:'Metallica', year:1981},
-    {id:5, name:'Mad Season', year:1994}
+    {id:5, name:'Mad Season', year:1994},
+    {id:6, name:'Avantasia', year:1999}
   ]
 });
 
