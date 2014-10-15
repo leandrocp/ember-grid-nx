@@ -15,7 +15,7 @@ module('Acceptance: GridNx', {
 test('should respect default sort', function() {
   expect(1);
 
-  visit('/artists');
+  visit('/');
 
   andThen(function() {
     equal(findWithAssert('.grid-nx table tbody td:first').text(), '1');
@@ -25,7 +25,7 @@ test('should respect default sort', function() {
 test('should reorder on header click', function() {
   expect(1);
 
-  visit('/artists');
+  visit('/');
   click('.grid-nx table thead th:first');
 
   andThen(function() {
@@ -36,7 +36,7 @@ test('should reorder on header click', function() {
 test('should have the same quantity on reorder', function() {
   expect(1);
 
-  visit('/artists');
+  visit('/');
   click('.grid-nx table thead th:first');
 
   andThen(function() {
@@ -44,10 +44,21 @@ test('should have the same quantity on reorder', function() {
   });
 });
 
+test('should find no results with invalid query', function() {
+  expect(1);
+
+  visit('/');
+  fillIn('.grid-nx input', '###');
+
+  andThen(function() {
+    equal(find('.grid-nx table tbody tr').length, 0);
+  });
+});
+
 test('should find valid results', function() {
   expect(1);
 
-  visit('/artists');
+  visit('/');
   fillIn('.grid-nx input', 'bl');
 
   andThen(function() {
@@ -58,7 +69,7 @@ test('should find valid results', function() {
 test('should find results starting with 1 query char', function() {
   expect(1);
 
-  visit('/artists');
+  visit('/');
   fillIn('.grid-nx input', 'a');
 
   andThen(function() {
@@ -69,7 +80,7 @@ test('should find results starting with 1 query char', function() {
 test('should be case insensitive', function() {
   expect(1);
 
-  visit('/artists');
+  visit('/');
   fillIn('.grid-nx input', 'mAd sEASon');
 
   andThen(function() {
@@ -80,7 +91,7 @@ test('should be case insensitive', function() {
 test('should search on all valid query attributes', function() {
   expect(3);
 
-  visit('/artists');
+  visit('/');
 
   fillIn('.grid-nx input', 'm');
   andThen(function() {

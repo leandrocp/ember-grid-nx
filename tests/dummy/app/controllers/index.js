@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import GridNx from '../../mixins/grid-nx';
+import GridNx from '../mixins/grid-nx';
 
 export default Ember.ArrayController.extend(GridNx, {
   sortProperties: ['name'],
