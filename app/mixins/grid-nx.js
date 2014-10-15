@@ -1,10 +1,3 @@
-import Ember from 'ember';
+import GridNx from 'ember-grid-nx/mixins/grid-nx';
 
-export default Ember.Mixin.create({
-  actions: {
-    sortBy: function(property) {
-      this.set('sortProperties', [property]);
-      this.set('sortAscending', !this.get('sortAscending'));
-    }
-  }
-});
+export default GridNx;

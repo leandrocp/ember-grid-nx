@@ -1,6 +1,6 @@
 {
   "name": "ember-grid-nx",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A simple yet effective Emberjs grid",
   "directories": {
     "doc": "doc",
