@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   layoutName: 'components/grid-nx',
 
-  paramsDefined: Ember.computed.and('grid', 'content'),
+  requiredParams: Ember.computed.and('grid'),
   header: Ember.computed.alias('grid'),
   attrs: Ember.computed.mapBy('grid', 'attr'),
 
@@ -14,11 +14,15 @@ export default Ember.Component.extend({
   searchableAttrs: Ember.computed.mapBy('searchableContent', 'attr'),
 
   body: function() {
-    return this.get('paramsDefined') ? this._makeRows() : [];
+    return this.get('requiredParams') ? this._makeRows() : [];
   }.property('content.lenght', 'arrangedContent.[]', 'query'),
 
-  _filter: function() {
-    var content = this.get('content');
+  _content: function() {
+    return this.get('content') || this.get('targetObject.arrangedContent');
+  },
+
+  _filteredContent: function() {
+    var content = this._content();
     var query   = this.get('query');
     var attrs   = this.get('searchableAttrs');
     var regex   = new RegExp('^'+query+'.*', 'gi');
@@ -38,7 +42,7 @@ export default Ember.Component.extend({
   },
 
   _makeRows: function() {
-    var filteredContent = this._filter();
+    var filteredContent = this._filteredContent();
     var attrs           = this.get('attrs');
     var rows            = Ember.A();
 
@@ -62,8 +66,8 @@ export default Ember.Component.extend({
   setupGridnx: function() {
     Ember.debug('[grid-nx] setup');
 
-    var content = this.get('content'),
-    grid    = this.get('grid');
+    var content = this._content(),
+        grid    = this.get('grid');
 
     if (Ember.isEmpty(content)) {
       Ember.Logger.error('[grid-nx] Content is empty! You should declare something like "content=arrangedContent".');

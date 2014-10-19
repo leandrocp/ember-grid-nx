@@ -4,8 +4,6 @@ import GridNx from '../../mixins/grid-nx';
 export default Ember.ArrayController.extend(GridNx, {
   sortProperties: ['name'],
   sortAscending: true,
-  page: 1,
-  perPage: 4,
 
   /*
    * Grid´s structure
@@ -17,6 +15,5 @@ export default Ember.ArrayController.extend(GridNx, {
     {title:'Name', attr:'name', query:true},
     {title:'Year', attr:'year'}
   ])
-
 });
 
