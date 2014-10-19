@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   layoutName: 'components/grid-nx',
 
   paramsDefined: Ember.computed.and('grid', 'content'),
-  header: Ember.computed.defaultTo('grid'),
+  header: Ember.computed.alias('grid'),
   attrs: Ember.computed.mapBy('grid', 'attr'),
 
   searchableContent: Ember.computed.filter('grid', function(attr){
