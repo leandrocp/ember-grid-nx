@@ -49,7 +49,7 @@ export default Ember.Component.extend({
     filteredContent.forEach(function(item){
       var row = Ember.A();
       attrs.forEach(function(attr){
-        row.addObject(item.get(attr));
+        row.pushObject(item.get(attr));
       });
       rows.pushObject(row);
     });
